@@ -1,6 +1,6 @@
 import debounce from 'lodash.debounce';
 import './css/styles.css';
-import Notiflix from "notiflix";
+import {Notify} from "notiflix";
 import onFetchData from "./fetch-api";
 const DEBOUNCE_DELAY = 300;
 
@@ -26,7 +26,7 @@ console.log('one');
 function checkArrLength(data) {
     if (data.length > 10) {
         console.log(data.length);
-       return Notiflix.Notify.warning("Too many matches found. Please enter a more specific name.")
+       return Notify.info("Too many matches found. Please enter a more specific name.")
     }
     // // else if (!!~data.length) {
         
