@@ -2,7 +2,6 @@ import debounce from 'lodash.debounce';
 import './css/styles.css';
 import Notiflix from "notiflix";
 import onFetchData from "./fetch-api";
-import debounce from 'lodash.debounce';
 const DEBOUNCE_DELAY = 300;
 
 // Notiflix
@@ -12,11 +11,11 @@ const refs = {
 
 }
 
-refs.inputEl.addEventListener('input',onEntering)
+refs.inputEl.addEventListener('input',debounce(onEntering,DEBOUNCE_DELAY))
 function onEntering(e) {
-    const inputValue = e.target.value;
+    const inputValue = e.target.value.trim();
     console.log();
-    onFetchData(inputValue.trim()).then(data => {
+    onFetchData(inputValue).then(data => {
    checkArrLength(data)
 })
 }
@@ -28,10 +27,11 @@ function checkArrLength(data) {
     if (data.length > 10) {
         console.log(data.length);
        return Notiflix.Notify.warning("Too many matches found. Please enter a more specific name.")
-    } else if (!!~data.length) {
-        
-        Notiflix.Notify.failure("Oops, there is no country with that name")
     }
+    // // else if (!!~data.length) {
+        
+    //    return Notiflix.Notify.failure("Oops, there is no country with that name")
+    // }
      return createMarkup(data);
     }
    
