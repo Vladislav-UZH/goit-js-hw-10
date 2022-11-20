@@ -8,6 +8,5 @@ function onFetchData(countries) {
             };
             return r.json();
         })
-        .catch(err=> console.error(err))
 }
 export default onFetchData;
